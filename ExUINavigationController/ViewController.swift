@@ -34,6 +34,8 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         
         dataArr = [dc1, dc2]
         
+        self.title = "主页"
+        
         self.view.addSubview(tableView)
         
         

@@ -16,12 +16,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        let tabBar = UITabBarController()
+        let homeNav = ViewController()
+        let myNav = SettingViewController()
+        
+        homeNav.tabBarItem.title = "主页"
+        myNav.tabBarItem.title = "我"
+        homeNav.tabBarItem.image = UIImage(named: "tab1")
+        myNav.tabBarItem.image = UIImage(named: "tab2")
+        
+        tabBar.viewControllers = [
+            UINavigationController(rootViewController: homeNav),
+            UINavigationController(rootViewController: myNav)
+        ]
+        
+        
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = ViewController()
-        let nav = UINavigationController(rootViewController: vc);
+        
         self.window?.backgroundColor = UIColor.white
-        self.window?.rootViewController = nav
+        self.window?.rootViewController = tabBar
         self.window?.makeKeyAndVisible()
+        
         
         return true
     }

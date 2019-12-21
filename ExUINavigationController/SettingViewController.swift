@@ -13,6 +13,8 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = .gray
+        self.title = "我"
         // Do any additional setup after loading the view.
     }
     
