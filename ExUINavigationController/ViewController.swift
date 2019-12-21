@@ -12,15 +12,28 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     
     
     var tableView = UITableView()
-    var dataArr = NSMutableArray()
+    
+
+    var dataArr = Array<Dictionary<String,String>>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        dataArr = ["1","2"]
         tableView.backgroundColor = .blue
         tableView.frame = self.view.frame
         tableView.delegate = self
         tableView.dataSource = self
+        
+        var dc1 = Dictionary<String, String>()
+        dc1["title"] = "title1"
+        dc1["content"] = "content1"
+        
+        var dc2 = Dictionary<String, String>()
+        dc2["title"] = "title2"
+        dc2["content"] = "content2"
+        
+        dataArr = [dc1, dc2]
+        
         self.view.addSubview(tableView)
         
         
@@ -37,16 +50,19 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
         return 80
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let arrContent = ArticleViewController()
+        self.navigationController?.pushViewController(arrContent, animated: true)
+        arrContent.message = dataArr[indexPath.row]["content"]
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellID = "cell";
         
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: cellID)
-        
-        cell.textLabel?.text = String(dataArr[indexPath.row] as! String)
-        cell.detailTextLabel?.text = "test\(dataArr[indexPath.row])"
-        
-        
+
+        cell.textLabel?.text = dataArr[indexPath.row]["title"]
+        cell.detailTextLabel?.text = dataArr[indexPath.row]["content"]
         
         return cell
     }
